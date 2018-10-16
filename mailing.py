@@ -5,10 +5,23 @@ from email.mime.base import MIMEBase
 from email import encoders
 import re
 from email.mime.text import MIMEText
+from mail_control import MailControl
+from mail_control import g_password
 
-server = smtplib.SMTP('smtp.gmail.com:587')
-server.starttls()
-server.login('infoinvtr@gmail.com', 'password')
+#wybierz gmail lub zimbra
+UseMail = 'gmail'
+#UseMail = 'zimbra'
+
+if UseMail =='gmail' :
+    server = smtplib.SMTP('smtp.gmail.com:587')
+    server.starttls()
+    server.login('infoinvtr@gmail.com', g_password)
+
+if UseMail == 'zimbra':
+    server = smtplib.SMTP('mta.email.center')
+    server.starttls()
+    server.login('izabela.draga@toreforge.com', MailControl)
+
 email_data = csv.reader(open('email.csv', 'r'))
 email_pattern = re.compile("^.+@.+\..+$")
 
