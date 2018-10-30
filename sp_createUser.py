@@ -1,4 +1,4 @@
-"""
+
 SQL
 
 
@@ -15,8 +15,8 @@ When creating a stored procedure to create a
 
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_createUser`(
-    IN p_name VARCHAR(20),
-    IN p_username VARCHAR(20),
+    IN p_name VARCHAR(255),
+    IN p_username VARCHAR(255),
     IN p_password TEXT
 )
 BEGIN
@@ -43,4 +43,14 @@ BEGIN
 END$$
 DELIMITER ;
 
-"""
+
+
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_validateLogin`(
+IN p_username VARCHAR(255)
+)
+BEGIN
+    select * from tbl_user where user_username = p_username;
+END$$
+DELIMITER ;

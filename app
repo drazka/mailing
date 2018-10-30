@@ -28,7 +28,7 @@ def showSignin():
     if session.get('user'):
         return render_template('userHome.html')
     else:
-        return render_template('signup.html')
+        return render_template('signin.html')
 
 
 @app.route('/userHome')
